@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     before_action :set_post
 
     def index 
-        @comments = @post.comments
+        @comments = Comment.all
         render json: @comments
     end
 
