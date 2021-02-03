@@ -2,9 +2,9 @@ class Post < ApplicationRecord
     has_many :comments
     validates :username, :content, presence: true
 
-    def update_likes 
+    def update_likes(comment)
         if comment.kind == 'Like'
-            self.likes = self.likes + transaction.likes
+            self.likes = self.likes + comment.likes
             self.save
         elsif comment.kind == 'Dislike'
             self.likes =self.likes - comment.likes

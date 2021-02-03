@@ -4,17 +4,14 @@ class CommentsController < ApplicationController
 
     def index 
         @comments = Comment.all
-        render json: @comments
+        render json: @post.comments
     end
 
     def create 
         @comment = @post.comments.new(comment_params)
-        if @post.update_balance(@comment)
-            @comment.save
-            render json: @post
-        else
-            render json: {error: 'Error creating comment'}
-        end
+        @post.update_likes(@comment)
+        @comment.save
+        render json: @post
     end
 
     def show 
@@ -34,6 +31,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params 
-        params.require(:comment).permit(:post_id, :username, :content, :likes, :date, :kind)
+        params.require(:comment).permit(:username, :post_id, :content, :likes, :date, :kind)
     end
 end
