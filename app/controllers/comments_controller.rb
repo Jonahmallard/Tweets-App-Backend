@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
 
     def create 
         @comment = @post.comments.new(comment_params)
-        if @account.update_balance(@comment)
+        if @post.update_balance(@comment)
             @comment.save
-            render json: @comment
+            render json: @post
         else
             render json: {error: 'Error creating comment'}
         end
@@ -23,8 +23,8 @@ class CommentsController < ApplicationController
     end
 
     def destroy 
-        # @comment = Comment.find(params[:id])
-        # @comment.destroy
+        @comment = Comment.find(params[:id])
+        @comment.destroy
     end
 
     private
