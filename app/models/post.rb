@@ -9,5 +9,6 @@ class Post < ApplicationRecord
         elsif comment.kind == 'Dislike'
             self.likes =self.likes - comment.likes
             self.save
+        end
     end
 end
