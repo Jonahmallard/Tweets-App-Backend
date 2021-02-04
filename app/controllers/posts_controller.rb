@@ -19,7 +19,10 @@ class PostsController < ApplicationController
     end
 
     def update
-
+        @post = Post.find(params[:id])
+        @post.update(username: params["post"]["username"], content: params["post"]["content"])
+        @post.save
+        render json: @post
     end
 
     private
