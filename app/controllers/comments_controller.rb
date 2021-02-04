@@ -20,8 +20,11 @@ class CommentsController < ApplicationController
     end
 
     def destroy 
-        @comment = Comment.find(params[:id])
+        @comment = Comment.find(params["id"])
+        @post = Post.find(@comment.post_id)
+        @post.update_likes_on_delete(@comment)
         @comment.destroy
+        render json: @post
     end
 
     private
