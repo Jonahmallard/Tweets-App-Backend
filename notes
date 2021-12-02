@@ -1,7 +1,0 @@
-Post
-has_many :comments
-    username: string, content: string, likes: integer, date: datetime
-    
-Comment
-belongs_to :post
-    post_id: integer, username: string, content: string, likes: integer, :date datetime
