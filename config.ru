@@ -1,5 +1,5 @@
 # starts the server
 
-require_relative 'config/environment'
+# require_relative 'config/environment'
 
-run Rails.application
+# run Rails.application
